@@ -19,7 +19,7 @@ N_INSTANCES = 4  # number of instances per site
 
 # Threshold Constants 
 # the range of thresholds is 0 to 1, and divide these values by MAX_THRESHOLD
-MIN_THRESHOLD = 950
+MIN_THRESHOLD = 900
 MAX_THRESHOLD = 1000
 STEP = 1
 
