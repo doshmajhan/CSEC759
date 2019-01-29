@@ -7,7 +7,7 @@ import random
 from os import listdir
 from os.path import isfile, join
 from scipy.stats import pearsonr
-from sklearn.metrics import roc_curve, auc
+from sklearn.metrics import roc_curve, auc, roc_curve
 import matplotlib.pyplot as plt
 
 
@@ -112,8 +112,8 @@ def display_results():
     # for each threshold correlation value, output the rate of TP, FP (same site), FP (different sites), FP (total)
     # non-verbose output format is: threshold TP FP_same FP_diff FP_total
     # generally use TP and FP_total to generate a ROC curve
-    true_positive_rate = list()
-    false_positive_rate = list()
+    true_positive_rates = list()
+    false_positive_rates = list()
 
     for threshold in range(MIN_THRESHOLD, MAX_THRESHOLD, STEP):
 
@@ -140,21 +140,20 @@ def display_results():
         if len(different_corrs) > 0:
             different_rate = different_count / len(different_corrs)
         if len(same_site_corrs) + len(different_corrs) > 0:
-            #total_d_rate = (same_site_count + different_count)/(len(same_site_corrs)+len(different_corrs))
-            total_d_rate = same_site_rate + different_rate
+            total_d_rate = (same_site_count + different_count)/(len(same_site_corrs)+len(different_corrs))
     
         print("threshold={}, same_instance_rate={:.3f}, same_site_rate={:.3f} diff_site_rate={:.3f}, total_d={:.3f}".format(
             threshold, same_instance_rate, same_site_rate, different_rate, total_d_rate))
     
-        true_positive_rate.append(same_instance_rate)
-        false_positive_rate.append(total_d_rate)
+        true_positive_rates.append(same_instance_rate)
+        false_positive_rates.append(total_d_rate)
     
-    # calculate AUC and display ROC curbe
-    roc_auc = auc(false_positive_rate, true_positive_rate)
+    # calculate AUC and display ROC curve
+    roc_auc = auc(false_positive_rates, true_positive_rates)
     plt.figure()
     plt.plot(
-        false_positive_rate, 
-        true_positive_rate, 
+        false_positive_rates, 
+        true_positive_rates, 
         color='darkorange', 
         lw=1, 
         label="ROC curve (area = {:.2f})".format(roc_auc)
