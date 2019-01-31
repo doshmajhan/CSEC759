@@ -7,8 +7,8 @@ import random
 from os import listdir
 from os.path import isfile, join
 from scipy.stats import pearsonr
-from sklearn.metrics import roc_curve, auc, roc_curve
-import matplotlib.pyplot as plt
+#from sklearn.metrics import roc_curve, auc, roc_curve, roc_auc_score
+#import matplotlib.pyplot as plt
 
 
 # CONSTANTS
@@ -56,20 +56,18 @@ def read_times():
     for data_file in data_files:
         
         # LIMIT FOR TESTING
-        if int(data_file.split("-")[1]) > N_INSTANCES:
-            continue
+        #if int(data_file.split("-")[1]) > N_INSTANCES:
+        #    continue
 
         orig_times[data_file] = list()
         gen_times[data_file] = list()
 
         with open(join(DATA_DIR, data_file)) as f:
-            random_value = random.uniform(1, RANDOM_PARAMETER)
             for _ in range(MAX_LENGTH):
                 try:
                     line = next(f)
                     packet_time = float(line.split()[0]) 
-                    #generated_time = packet_time + random.uniform(1, RANDOM_PARAMETER)
-                    generated_time = packet_time + random_value
+                    generated_time = packet_time + random.uniform(1, RANDOM_PARAMETER)
 
                 except StopIteration:
                     packet_time = 0.0
@@ -148,24 +146,28 @@ def display_results():
         true_positive_rates.append(same_instance_rate)
         false_positive_rates.append(total_d_rate)
     
+    """
+    CODE USED TO GENERATE GRAPHS AND AUC
     # calculate AUC and display ROC curve
-    roc_auc = auc(false_positive_rates, true_positive_rates)
+    labels = [1 for _ in range(len(same_instance_corrs))] + [0 for _ in range(len(same_site_corrs) + len(different_corrs))]
+    roc_auc = roc_auc_score(labels, same_instance_corrs + same_site_corrs + different_corrs)
+    auc_score = auc(false_positive_rates, true_positive_rates)
     plt.figure()
     plt.plot(
-        false_positive_rates, 
-        true_positive_rates, 
-        color='darkorange', 
-        lw=1, 
-        label="ROC curve (area = {:.2f})".format(roc_auc)
+        false_positive_rates,
+        true_positive_rates,
+        color='darkorange',
+        lw=1,
+        label="ROC curve (auc = {:.2f})".format(auc_score)
     )
-    #plt.plot([0, 1], [0, 1], color='navy', lw=1, linestyle='--')
-    plt.xlim([0.0, 1.0])
+    plt.xlim([0.0, 0.3])
     plt.ylim([0.0, 1.0])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
     plt.title('ROC Curve')
     plt.legend(loc="lower right")
     plt.show()
+    """
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Timing analysis for Tor traffic', add_help=True)
