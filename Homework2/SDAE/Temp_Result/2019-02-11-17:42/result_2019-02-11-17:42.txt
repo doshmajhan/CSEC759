@@ -1,0 +1,116 @@
+8000 Training samples
+1000 Validation samples
+1000 Test samples
+
+Loading Data Done! : 0.51 s
+Shape of X_input: (8000, 5000)
+Corruption Level: [0.3, 0.3, 0.3, 0.3]
+Pre-trainig for Denoising Layer : 1
+Number of Hidden Units : 1000
+--- Input Dimension  : 5000
+--- Output Dimension : 5000
+Epoch 1/3
+ - 16s - loss: 0.1119
+Epoch 2/3
+ - 15s - loss: 0.0927
+Epoch 3/3
+ - 16s - loss: 0.0876
+Shape of X_input: (8000, 1000)
+Pre-trainig for Denoising Layer : 2
+Number of Hidden Units : 500
+--- Input Dimension  : 1000
+--- Output Dimension : 1000
+Epoch 1/3
+ - 2s - loss: 0.0766
+Epoch 2/3
+ - 2s - loss: 0.0389
+Epoch 3/3
+ - 2s - loss: 0.0327
+Shape of X_input: (8000, 500)
+Pre-trainig for Denoising Layer : 3
+Number of Hidden Units : 250
+--- Input Dimension  : 500
+--- Output Dimension : 500
+Epoch 1/3
+ - 1s - loss: 0.0933
+Epoch 2/3
+ - 1s - loss: 0.0247
+Epoch 3/3
+ - 1s - loss: 0.0181
+Shape of X_input: (8000, 250)
+Pre-trainig for Denoising Layer : 4
+Number of Hidden Units : 10
+--- Input Dimension  : 250
+--- Output Dimension : 250
+Epoch 1/3
+ - 0s - loss: 0.3272
+Epoch 2/3
+ - 0s - loss: 0.1083
+Epoch 3/3
+ - 0s - loss: 0.0679
+Shape of X_input: (8000, 10)
+Pretraining Done! : 59.84 s
+Drop out value : [0.6, 0.4, 0.2, 0.1]
+Create Layer 1 with 1000 hidden units
+Create Layer 2 with 500 hidden units
+Create Layer 3 with 250 hidden units
+Create Layer 4 with 10 hidden units
+Train on 8000 samples, validate on 1000 samples
+Epoch 1/3
+ - 6s - loss: 0.8200 - acc: 0.7384 - val_loss: 0.3605 - val_acc: 0.8900
+Epoch 2/3
+ - 5s - loss: 0.3437 - acc: 0.8966 - val_loss: 0.2969 - val_acc: 0.9180
+Epoch 3/3
+ - 7s - loss: 0.2439 - acc: 0.9271 - val_loss: 0.2832 - val_acc: 0.9300
+Finetuning Done! : 18.61 s
+Start evaluating a classifier
+Test Accuracy: 0.93
+Testing Done! : 0.47 s
+
+Test score: 0.28320851270109415
+Test accuracy: 0.93
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+Pretrain_hidden_encode_4 (De (None, 10)                2510      
+_________________________________________________________________
+Pretrain_activation_encode_4 (None, 10)                0         
+_________________________________________________________________
+Pretrain_hidden_decode_4 (De (None, 250)               2750      
+=================================================================
+Total params: 5,260
+Trainable params: 5,260
+Non-trainable params: 0
+_________________________________________________________________
+None
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+Finetune_hidden_1 (Dense)    (None, 1000)              5001000   
+_________________________________________________________________
+Finetune_activation_1 (ELU)  (None, 1000)              0         
+_________________________________________________________________
+Finetune_dropout_1 (Dropout) (None, 1000)              0         
+_________________________________________________________________
+Finetune_hidden_2 (Dense)    (None, 500)               500500    
+_________________________________________________________________
+Finetune_activation_2 (Activ (None, 500)               0         
+_________________________________________________________________
+Finetune_dropout_2 (Dropout) (None, 500)               0         
+_________________________________________________________________
+Finetune_hidden_3 (Dense)    (None, 250)               125250    
+_________________________________________________________________
+Finetune_activation_3 (Activ (None, 250)               0         
+_________________________________________________________________
+Finetune_dropout_3 (Dropout) (None, 250)               0         
+_________________________________________________________________
+Finetune_hidden_4 (Dense)    (None, 10)                2510      
+_________________________________________________________________
+softmax (Activation)         (None, 10)                0         
+=================================================================
+Total params: 5,629,260
+Trainable params: 5,629,260
+Non-trainable params: 0
+_________________________________________________________________
+None
+dict_keys(['val_loss', 'val_acc', 'loss', 'acc'])
