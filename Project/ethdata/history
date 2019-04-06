@@ -1,0 +1,37 @@
+eth.accounts
+eth.blockNumber
+eth.getBalance(eth.accounts[0])
+miner.start(1)
+miner.stop(1)
+miner.stop()
+eth.getBalance(eth.accounts[0])
+eth.blockNumber
+miner.start(1)
+miner.stop()
+miner.stop(1)
+miner.start()
+eth.blockNumber
+miner.stop()
+miner.stop
+miner.stop()
+exit()
+eth.getBalance(eth.accounts[0])
+eth.coinbase
+eth.getBalance(eth.coinbase)
+eth.sendTransaction({from: eth.coinbase, to: eth.accounts[1], value:web3(3, "ether")})
+eth.sendTransaction({from: eth.coinbase, to: eth.accounts[1], value:web3.toWei(3, "ether")})
+miner.start(1)
+miner.stop()
+eth.getBalance(eth.coinbase)
+eth.getBalance(eth.accounts[1])
+miner.start(1)
+miner.stop()
+miner.start(1)
+miner.stop()
+miner.start(1)
+miner.stop()
+eth.getBalance(eth.accounts[1])
+miner.start(1)
+miner.stop()
+miner.start()
+miner.stop()

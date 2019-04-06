@@ -51,7 +51,7 @@ NB_CLASSES = 10
 
 # Number of hidden units for each hidden layer
 # e.g. [number of hidden units for 1st Hidden Layer,... ]
-HIDDEN_LAYERS = [1000, 500, 250, NB_CLASSES]
+HIDDEN_LAYERS = [2500, 1000, NB_CLASSES]
 
 # Number of input & output for each denoising layers
 DAE_INPUT = [FEATURE_LENGTH] + HIDDEN_LAYERS
@@ -206,7 +206,7 @@ def pre_train(X_train):
 
         else:
             # For the next following layers
-            DAE_layer.add(Activation('relu', name='Pretrain_activation_encode_{}'.format(h + 1)))
+            DAE_layer.add(Activation('tanh', name='Pretrain_activation_encode_{}'.format(h + 1)))
         
         DAE_layer.add(Dense(hidden_output_dim, name='Pretrain_hidden_decode_{}'.format(h+1)))
 
@@ -291,7 +291,7 @@ def fine_tune(WeightBias, X_train, X_valid, Y_train, Y_valid):
             print("Create Layer {} with {} hidden units".format(d + 1, hidden_unit))
 
             if (d + 1) != len(HIDDEN_LAYERS):
-                Finetune.add(Activation('relu', name = 'Finetune_activation_{}'.format(d+1)))
+                Finetune.add(Activation('tanh', name = 'Finetune_activation_{}'.format(d+1)))
                 Finetune.add(Dropout(drop_out_value[d], name = 'Finetune_dropout_{}'.format(d+1)))
                 Finetune.layers[current_layer].set_weights(WeightBias[d + 1])
                 current_layer = current_layer + 3
