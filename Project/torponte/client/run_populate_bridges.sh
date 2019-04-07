@@ -1,1 +1,1 @@
-python populate_bridges.py -a 0x91a7Fb61733e704A8B87a66C1A3EafDE79893805 $@
+python populate_bridges.py -a 0x1320cF42B103e7EEF7b2D1b72290eC6174325232 $@

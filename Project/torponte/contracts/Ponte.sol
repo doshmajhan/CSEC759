@@ -49,8 +49,8 @@ contract Ponte is Seriality {
             bytesToString(offset, new_bridges, bytes(captcha_answer));
             offset -= sizeOfString(captcha_answer);
 
-            Bridge memory bridge = Bridge(ip_address, captcha, captcha_answer);
-            bridges.push(bridge);
+            ///Bridge memory bridge = Bridge(ip_address, captcha, captcha_answer);
+            ///bridges.push(bridge);
         }
     }
 
@@ -76,7 +76,7 @@ contract Ponte is Seriality {
     /// @param captcha_answer the answer contained within the captcha
     function submit_bridge_captcha(uint bridge_id, string memory captcha_answer) public view returns (string memory) {
         Bridge memory bridge = bridges[bridge_id];
-        if (compare_strings(bridge.captcha, captcha_answer)) {
+        if (compare_strings(bridge.captcha_answer, captcha_answer)) {
             return bridge.ip_address;
         }
 
