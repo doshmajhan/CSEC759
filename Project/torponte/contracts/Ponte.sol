@@ -1,6 +1,8 @@
 pragma solidity >=0.4.21 <0.6.0;
 
-contract Ponte {
+import "./Seriality.sol";
+
+contract Ponte is Seriality {
 
     struct Bridge {
         string ip_address;
@@ -27,8 +29,39 @@ contract Ponte {
 
     /// @notice Updates the bridges mapping with new bridge addresses
     /// @param new_bridges The new bridges
-    function update_bridges(string memory new_bridges) public view {
+    function update_bridges(bytes memory new_bridges) public {
         require(msg.sender == owner, "Must be owner");
+        
+        uint offset = 64*10;
+        new_bridges = new  bytes(offset);
+
+        for (uint i = 0; i < 10; i++) {
+            string memory ip_address = new string(32);
+            string memory captcha = new string(32);
+            string memory captcha_answer = new string(32);
+
+            bytesToString(offset, new_bridges, bytes(ip_address));
+            offset -= sizeOfString(ip_address);
+
+            bytesToString(offset, new_bridges, bytes(captcha));
+            offset -= sizeOfString(captcha);
+
+            bytesToString(offset, new_bridges, bytes(captcha_answer));
+            offset -= sizeOfString(captcha_answer);
+
+            Bridge memory bridge = Bridge(ip_address, captcha, captcha_answer);
+            bridges.push(bridge);
+        }
+    }
+
+    /// @notice Adds a single bridge to the list
+    /// @param ip_address The ip address of the new bridge
+    /// @param captcha The captcha data for the bridge
+    /// @param captcha_answer The answer to the captcha
+    function add_bridge(string memory ip_address, string memory captcha, string memory captcha_answer) public {
+        require(msg.sender == owner, "Must be owner");
+        Bridge memory bridge = Bridge(ip_address, captcha, captcha_answer);
+        bridges.push(bridge);
     }
 
     /// @notice gets the captcha data and ID for a random bridge
