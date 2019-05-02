@@ -73,8 +73,9 @@ def populate_bridges(contract_client):
             bridge["captcha_answer"]
         ).transact({
             'chainId': 1016,
-            'gas': 1000000,
-            'nonce': W3.eth.getTransactionCount(W3.eth.accounts[0]) + 1
+            'gas': 2000000,
+            'gasPrice': Web3.toWei(20, 'gwei'),
+            'nonce': W3.eth.getTransactionCount(W3.eth.accounts[0]) + 6
         })
 
         tx_reciept = W3.eth.waitForTransactionReceipt(tx_hash)

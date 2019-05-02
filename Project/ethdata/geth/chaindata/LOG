@@ -302,3 +302,42 @@
 17:23:08.336293 table@remove removed @66
 17:23:08.336334 table@remove removed @63
 17:23:08.336459 table@remove removed @62
+=============== Apr 7, 2019 (EDT) ===============
+02:06:10.469776 db@close closing
+02:06:10.469954 db@close done T·176.344µs
+=============== Apr 7, 2019 (EDT) ===============
+02:07:10.771290 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+02:07:10.783420 version@stat F·[0 1] S·1MiB[0B 1MiB] Sc·[0.00 0.01]
+02:07:10.783437 db@open opening
+02:07:10.783482 journal@recovery F·1
+02:07:10.785056 journal@recovery recovering @67
+02:07:10.905548 memdb@flush created L0@70 N·24268 S·1MiB "\x01\xe1w..*\xab\",v54282":"\xffs\xba..\x8bv\xaf,v54354"
+02:07:10.907205 version@stat F·[1 1] S·2MiB[1MiB 1MiB] Sc·[0.25 0.01]
+02:07:11.007241 db@janitor F·4 G·0
+02:07:11.007294 db@open done T·223.842552ms
+02:07:40.331575 table@compaction L0·1 -> L1·1 S·2MiB Q·54523
+02:07:40.443405 table@build created L1@73 N·36485 S·2MiB "\x00O1..g\x0f@,v1360":"\xffs\xba..\x8bv\xaf,v54354"
+02:07:40.443470 version@stat F·[0 1] S·2MiB[0B 2MiB] Sc·[0.00 0.02]
+02:07:40.508363 table@compaction committed F-1 S-300KiB Ke·0 D·7327 T·176.705684ms
+02:07:40.508669 table@remove removed @70
+02:07:40.508889 table@remove removed @69
+02:08:02.932075 db@close closing
+02:08:02.932171 db@close done T·91.664µs
+=============== Apr 7, 2019 (EDT) ===============
+02:08:45.202658 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+02:08:45.202872 version@stat F·[0 1] S·2MiB[0B 2MiB] Sc·[0.00 0.02]
+02:08:45.202888 db@open opening
+02:08:45.202951 journal@recovery F·1
+02:08:45.205016 journal@recovery recovering @71
+02:08:45.239480 memdb@flush created L0@74 N·90 S·4KiB "Dat..ion,v54495":"\xa3!m..i(C,v54581"
+02:08:45.242285 version@stat F·[1 1] S·2MiB[4KiB 2MiB] Sc·[0.25 0.02]
+02:08:45.335350 db@janitor F·4 G·0
+02:08:45.335506 db@open done T·132.500296ms
+02:10:22.079936 table@compaction L0·1 -> L1·1 S·2MiB Q·54659
+02:10:22.238456 table@build created L1@77 N·36545 S·2MiB "\x00O1..g\x0f@,v1360":"\xffs\xba..\x8bv\xaf,v54354"
+02:10:22.238547 version@stat F·[0 1] S·2MiB[0B 2MiB] Sc·[0.00 0.02]
+02:10:22.293225 table@compaction committed F-1 S+566B Ke·0 D·30 T·213.190161ms
+02:10:22.293391 table@remove removed @74
+02:10:22.293680 table@remove removed @73
+03:29:16.659713 db@close closing
+03:29:16.659749 db@close done T·35.744µs
